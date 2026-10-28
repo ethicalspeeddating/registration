@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Ethical Speed Dating Registration</title>
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: #0d0d0d;
+            color: #e0e0e0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .card {
+            background: #1a1a1a;
+            border: 1px solid #2e2e2e;
+            border-radius: 16px;
+            padding: 40px 36px;
+            width: 100%;
+            max-width: 480px;
+        }
+
+        h1 {
+            margin: 0 0 16px;
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -.5px;
+        }
+
+        h1 span {
+            color: #ff6b6b;
+        }
+
+        .field {
+            margin-bottom: 22px;
+        }
+
+        label {
+            display: block;
+            font-size: .8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            color: #888;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="file"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px 14px;
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 8px;
+            color: #e0e0e0;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color .15s;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #ff6b6b;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 90px;
+            font-family: inherit;
+            line-height: 1.5;
+        }
+
+        select {
+            appearance: none;
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23888' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            padding-right: 36px;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 14px;
+            margin-top: 6px;
+            background: #ff6b6b;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: opacity .15s;
+        }
+
+        button[type="submit"]:disabled {
+            opacity: .5;
+            cursor: not-allowed;
+        }
+
+        button[type="submit"]:hover:not(:disabled) {
+            opacity: .88;
+        }
+
+        .hint {
+            font-size: 0.85em;
+            color: #555;
+            margin-top: 6px;
+        }
+
+        #successMessage {
+            display: none;
+            padding: 20px;
+            background: #0d2b1a;
+            color: #4caf86;
+            border: 1px solid #1a5c36;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .subtitle {
+            color: #aaa;
+            font-size: 0.9rem;
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+
+        .warning {
+            color: #ff6b6b;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 24px;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <h1>Ethical Speed Dating <span>Registration</span></h1>
+        <p class="subtitle">Please complete this short form to complete your order.</p>
+        <p class="warning">You must enter the code emailed to you after submitting this form into the ticketing platform
+            to complete your order.</p>
+
+        <div id="successMessage">
+            <strong>Registration submitted!</strong>
+            <br/>
+            <br/>
+            </b>Your code was sent to <strong id="sentEmail"></strong>
+            <br/>
+            <br/>
+            Please check your email (including spam folder) for the code to enter into the ticketing platform to secure your tickets.
+            <br/>
+            <br/>
+            <b>Important: Please add our email address to your address book now because <b>we will email you before your event with the exact meeting point.</b>
+        </div>
+
+        <form id="registrationForm">
+            <div class="field">
+                <label for="email">Email</label>
+                <input type="email" id="email" required>
+                <div class="hint">Must be valid to receive your registration code.</div>
+            </div>
+            <div class="field">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" required>
+            </div>
+            <div class="field">
+                <label for="sex">Sex</label>
+                <select id="sex" required>
+                    <option value="">Select...</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+            <div class="field">
+                <label for="photo">Photo</label>
+                <input type="file" id="photo" accept="image/*" required>
+                <div class="hint">A recent selfie (clear, max a few months old and recognisable - no
+                    filters).<br /><b>Only visible to your dates, only during the in person event (so they can find you).</b></div>
+            </div>
+            <div class="field">
+                <label for="description">Brief Description</label>
+                <textarea id="description" maxlength="500" rows="4" required></textarea>
+                <div class="hint">Just a few lines about yourself (e.g. interests, what you enjoy, or what you're
+                    looking for) - it doesn't need to be anything formal - just be yourself!<br /><b>Only visible to your dates, only during the in person event.</b><br />Limited to 500 characters.</div>
+            </div>
+            <button type="submit" id="submitBtn">Email My Registration Code</button>
+        </form>
+    </div>
+
+    <script>
+        // Production backend server candidate URLs (redundancy and failover).
+        const PRODUCTION_BACKEND_URLS = [
+            'https://ethical-speed-dating.onrender.com',
+            'https://esd-vops.onrender.com'
+        ];
+
+        // Primary default backend URL for backward compatibility
+        const ESD_BACKEND_URL = PRODUCTION_BACKEND_URLS[0];
+
+        /**
+         * Resolves the list of candidate backend URLs to attempt in order.
+         * - On localhost / 127.0.0.1: defaults to local relative path ['']
+         * - On external host (GitHub Pages): randomly shuffles production servers so traffic is distributed
+         *   and if one server is down (e.g. Render 5GB bandwidth limit or sleeping), the other is used.
+         * - Can be overridden via window.ESD_BACKEND_URL (single string or array of URLs)
+         */
+        function getCandidateBackendUrls() {
+            if (typeof window.ESD_BACKEND_URL !== 'undefined') {
+                return Array.isArray(window.ESD_BACKEND_URL)
+                    ? [...window.ESD_BACKEND_URL]
+                    : [window.ESD_BACKEND_URL];
+            }
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                return [''];
+            }
+            // Shuffle both production servers in random order (50% [0, 1], 50% [1, 0])
+            return Math.random() < 0.5
+                ? [...PRODUCTION_BACKEND_URLS]
+                : [PRODUCTION_BACKEND_URLS[1], PRODUCTION_BACKEND_URLS[0]];
+        }
+
+        document.getElementById('registrationForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            btn.disabled = true;
+            btn.innerText = 'Emailing your code...';
+
+            try {
+                const fileInput = document.getElementById('photo');
+                let photoBase64 = null;
+                if (fileInput.files.length > 0) {
+                    // Resize the image so it fits comfortably within Google Sheets cell character limits
+                    const file = fileInput.files[0];
+                    const img = new Image();
+                    const reader = new FileReader();
+
+                    photoBase64 = await new Promise((resolve, reject) => {
+                        reader.onload = (evt) => {
+                            img.onload = () => {
+                                const canvas = document.createElement('canvas');
+                                const maxDim = 600;
+                                let { width, height } = img;
+                                if (width > maxDim || height > maxDim) {
+                                    if (width > height) { height = Math.round((height * maxDim) / width); width = maxDim; }
+                                    else { width = Math.round((width * maxDim) / height); height = maxDim; }
+                                }
+                                canvas.width = width;
+                                canvas.height = height;
+                                const ctx = canvas.getContext('2d');
+                                ctx.drawImage(img, 0, 0, width, height);
+                                resolve(canvas.toDataURL('image/jpeg', 0.6));
+                            };
+                            img.onerror = () => reject(new Error('Failed to load image'));
+                            img.src = evt.target.result;
+                        };
+                        reader.onerror = () => reject(new Error('Failed to read file'));
+                        reader.readAsDataURL(file);
+                    });
+                }
+
+                const payload = {
+                    email: document.getElementById('email').value,
+                    firstName: document.getElementById('firstName').value,
+                    sex: document.getElementById('sex').value,
+                    description: document.getElementById('description').value,
+                    photo: photoBase64
+                };
+
+                const candidateUrls = getCandidateBackendUrls();
+                let submissionSuccess = false;
+
+                for (let i = 0; i < candidateUrls.length; i++) {
+                    const backendUrl = candidateUrls[i];
+                    try {
+                        const res = await fetch(`${backendUrl}/api/register`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+
+                        if (res.ok) {
+                            submissionSuccess = true;
+                            document.getElementById('sentEmail').textContent = payload.email;
+                            document.getElementById('registrationForm').style.display = 'none';
+                            document.getElementById('successMessage').style.display = 'block';
+                            break;
+                        }
+
+                        // If server responded with a client-side validation error (e.g. 400 Bad Request, duplicate email)
+                        // the server is reachable and active, so present the specific error message to the user.
+                        if (res.status >= 400 && res.status < 500 && res.status !== 404 && res.status !== 429) {
+                            const data = await res.json().catch(() => ({}));
+                            alert('Error: ' + (data.error || 'Failed to register'));
+                            btn.disabled = false;
+                            btn.innerText = 'Email My Registration Code';
+                            return;
+                        }
+
+                        // Server returned 5xx, 404, or 429 (down / sleeping / bandwidth exhausted) -> try next candidate server
+                        console.warn(`Backend ${backendUrl || 'local'} returned HTTP ${res.status}. Falling back to next server...`);
+                    } catch (err) {
+                        // Network error, connection refused, or timeout -> try next candidate server
+                        console.warn(`Connection to backend ${backendUrl || 'local'} failed:`, err);
+                    }
+                }
+
+                if (!submissionSuccess) {
+                    alert('An error occurred. Please try again or try a different image.');
+                    btn.disabled = false;
+                    btn.innerText = 'Email My Registration Code';
+                }
+            } catch (err) {
+                alert('An error occurred. Please try again or try a different image.');
+                btn.disabled = false;
+                btn.innerText = 'Email My Registration Code';
+            }
+        });
+    </script>
+</body>
+
+</html>
