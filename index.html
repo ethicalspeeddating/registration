@@ -211,10 +211,13 @@
 
     <script>
         // Production backend server candidate URLs (redundancy and failover).
-        const PRODUCTION_BACKEND_URLS = [
-            'https://ethical-speed-dating.onrender.com',
-            'https://esd-vops.onrender.com'
-        ];
+        // Centralized in constants.js: uses window.PRODUCTION_BACKEND_URLS if loaded, with standalone fallback.
+        const PRODUCTION_BACKEND_URLS = (typeof window !== 'undefined' && Array.isArray(window.PRODUCTION_BACKEND_URLS))
+            ? window.PRODUCTION_BACKEND_URLS
+            : [
+                'https://ethical-speed-dating.onrender.com',
+                'https://esd-vops.onrender.com'
+            ];
 
         // Primary default backend URL for backward compatibility
         const ESD_BACKEND_URL = PRODUCTION_BACKEND_URLS[0];
